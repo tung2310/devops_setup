@@ -14,7 +14,7 @@ provider "aws" {
 
 locals {
   ami           = "ami-06c4be2792f419b7b"
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
   name          = "lab"
   key_pair      = "tung2802"
 }
@@ -44,28 +44,28 @@ resource "aws_instance" "master" {
   }
 }
 
-# resource "aws_instance" "web1" {
-#   ami           = local.ami
-#   instance_type = local.instance_type
-#   key_name      = local.key_pair
-#   vpc_security_group_ids = [ data.aws_security_group.sg01.id ]
-#   subnet_id = data.aws_subnet.my_subnet1.id
-#   associate_public_ip_address = "true"
+resource "aws_instance" "web1" {
+  ami           = local.ami
+  instance_type = local.instance_type
+  key_name      = local.key_pair
+  vpc_security_group_ids = [ data.aws_security_group.sg01.id ]
+  subnet_id = data.aws_subnet.my_subnet1.id
+  associate_public_ip_address = "true"
 
-#   tags = {
-#     Name = "web1"
-#   }
-# }
+  tags = {
+    Name = "web1"
+  }
+}
 
-# resource "aws_instance" "web2" {
-#   ami           = local.ami
-#   instance_type = local.instance_type
-#   key_name      = local.key_pair
-#   vpc_security_group_ids = [ data.aws_security_group.sg01.id ]
-#   subnet_id = data.aws_subnet.my_subnet1.id
-#   associate_public_ip_address = "true"
+resource "aws_instance" "web2" {
+  ami           = local.ami
+  instance_type = local.instance_type
+  key_name      = local.key_pair
+  vpc_security_group_ids = [ data.aws_security_group.sg01.id ]
+  subnet_id = data.aws_subnet.my_subnet1.id
+  associate_public_ip_address = "true"
 
-#   tags = {
-#     Name = "web2"
-#   }
-# }
+  tags = {
+    Name = "web2"
+  }
+}
